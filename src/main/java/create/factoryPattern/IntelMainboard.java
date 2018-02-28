@@ -1,4 +1,4 @@
-package create.abstractFactoryPattern;
+package create.factoryPattern;
 
 /**
  * @author lijie7
@@ -6,7 +6,7 @@ package create.abstractFactoryPattern;
  * @Description
  * @modified By
  */
-public class AmdMainboard implements IMainboard {
+public class IntelMainboard implements IMainboard {
 
     /**
      * CPU插槽的孔数
@@ -18,7 +18,7 @@ public class AmdMainboard implements IMainboard {
      *
      * @param cpuHoles
      */
-    public AmdMainboard(int cpuHoles) {
+    public IntelMainboard(int cpuHoles) {
         this.cpuHoles = cpuHoles;
     }
 
