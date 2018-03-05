@@ -1,4 +1,6 @@
-package create.factoryPattern;
+package create;
+
+import create.ICpu;
 
 /**
  * @author lijie7

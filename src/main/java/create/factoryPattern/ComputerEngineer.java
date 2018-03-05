@@ -1,5 +1,8 @@
 package create.factoryPattern;
 
+import create.ICpu;
+import create.IMainboard;
+
 /**
  * @author lijie7
  * @date 2018/2/28

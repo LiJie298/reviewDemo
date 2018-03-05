@@ -1,5 +1,9 @@
 package create.factoryPattern;
 
+import create.AmdCpu;
+import create.ICpu;
+import create.IntelCpu;
+
 /**
  * @author lijie7
  * @date 2018/2/28
