@@ -1,6 +1,4 @@
-package create;
-
-import create.IMainboard;
+package designPatternDemo;
 
 /**
  * @author lijie7
@@ -8,7 +6,7 @@ import create.IMainboard;
  * @Description
  * @modified By
  */
-public class IntelMainboard implements IMainboard {
+public class AmdMainboard implements IMainboard {
 
     /**
      * CPU插槽的孔数
@@ -20,7 +18,7 @@ public class IntelMainboard implements IMainboard {
      *
      * @param cpuHoles
      */
-    public IntelMainboard(int cpuHoles) {
+    public AmdMainboard(int cpuHoles) {
         this.cpuHoles = cpuHoles;
     }
 

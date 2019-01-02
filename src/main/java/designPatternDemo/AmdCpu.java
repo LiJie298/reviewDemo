@@ -1,6 +1,5 @@
-package create;
+package designPatternDemo;
 
-import create.ICpu;
 
 /**
  * @author lijie7
@@ -8,18 +7,19 @@ import create.ICpu;
  * @Description
  * @modified By
  */
-public class IntelCpu implements ICpu {
+public class AmdCpu implements ICpu {
+
     /**
      * CPU的针脚数
      */
     private int pins = 0;
 
-    public IntelCpu(int pins) {
+    public AmdCpu(int pins) {
         this.pins = pins;
     }
 
     @Override
     public void calculate() {
-        System.out.println("Intel CPU的针脚数：" + pins);
+        System.out.println("AMD CPU的针脚数：" + pins);
     }
 }

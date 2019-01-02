@@ -1,4 +1,4 @@
-package create.factoryPattern;
+package designPatternDemo.factoryPattern;
 
 /**
  * @author lijie7

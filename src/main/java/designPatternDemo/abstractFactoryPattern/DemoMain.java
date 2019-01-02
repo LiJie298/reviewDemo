@@ -1,4 +1,4 @@
-package create.abstractFactoryPattern;
+package designPatternDemo.abstractFactoryPattern;
 
 /**
  * @author lijie7

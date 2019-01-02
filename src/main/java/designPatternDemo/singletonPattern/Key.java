@@ -1,4 +1,4 @@
-package create.singletonPattern;
+package designPatternDemo.singletonPattern;
 
 /**
  * @author lijie7

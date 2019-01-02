@@ -1,7 +1,7 @@
-package create.factoryPattern;
+package designPatternDemo.factoryPattern;
 
-import create.ICpu;
-import create.IMainboard;
+import designPatternDemo.ICpu;
+import designPatternDemo.IMainboard;
 
 /**
  * @author lijie7

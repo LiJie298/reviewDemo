@@ -1,8 +1,8 @@
-package create.factoryPattern;
+package designPatternDemo.factoryPattern;
 
-import create.AmdCpu;
-import create.ICpu;
-import create.IntelCpu;
+import designPatternDemo.AmdCpu;
+import designPatternDemo.ICpu;
+import designPatternDemo.IntelCpu;
 
 /**
  * @author lijie7

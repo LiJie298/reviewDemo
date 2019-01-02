@@ -1,4 +1,4 @@
-package create;
+package designPatternDemo;
 
 /**
  * @author lijie7

@@ -1,12 +1,8 @@
-package create.abstractFactoryPattern;
+package designPatternDemo.abstractFactoryPattern;
 
 
-import create.AmdMainboard;
-import create.IMainboard;
-import create.IntelMainboard;
+import designPatternDemo.IMainboard;
 import org.apache.commons.lang3.StringUtils;
-
-import java.awt.datatransfer.StringSelection;
 
 /**
  * @author lijie7
