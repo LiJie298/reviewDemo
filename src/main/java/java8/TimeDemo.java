@@ -1,6 +1,9 @@
 package java8;
 
 
+import org.jsoup.Jsoup;
+
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -8,9 +11,22 @@ import java.time.Month;
 import java.time.format.DateTimeFormatter;
 import java.time.format.TextStyle;
 import java.util.Locale;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class TimeDemo {
     public static void main(String[] args) {
+        try {
+            String html = Jsoup.connect("https://www.toutiao.com/a6673398428485026052").get().html();
+            Pattern pattern = Pattern.compile("content :'[\\s\\S]+?'", Pattern.CASE_INSENSITIVE);
+            Matcher matcher = pattern.matcher(html);
+            if (matcher.find()) {
+                System.out.println(matcher.group());
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         LocalDate today = LocalDate.now();
         System.out.println(getDateString(today, "yyyy-MM-dd"));
         LocalDateTime now = LocalDateTime.now();

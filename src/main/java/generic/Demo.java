@@ -2,6 +2,8 @@ package generic;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  *  T 表示类型参数， 泛型就是类型参数化，处理的数据类型不是固定的，
@@ -43,7 +45,7 @@ public class Demo<T> {
         }
     }
 
-    public static void main(String[] args) {
+    public  void ma1in(String[] args) {
         String filepath ="/mnt/source3/pmop/storage_raw/2019/0121/9631623_test";
         File file = new File(filepath);
         if(!file.getParentFile().exists()){
@@ -55,4 +57,14 @@ public class Demo<T> {
             e.printStackTrace();
         }
     }
+
+    public static void main(String[] args) {
+        Map a = new HashMap();
+        System.out.println(1<<2);
+        System.out.println(2<<2);
+        System.out.println(3<<2);
+        System.out.println(4<<2);
+    }
+
+
 }
