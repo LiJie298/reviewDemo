@@ -64,6 +64,10 @@ public class Demo<T> {
         System.out.println(2<<2);
         System.out.println(3<<2);
         System.out.println(4<<2);
+
+        String a1 = "test123123";
+        String a2 = a1.intern();
+
     }
 
 

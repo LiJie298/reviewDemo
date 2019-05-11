@@ -10,6 +10,7 @@ public class HeapOOM {
     }
 
     /**
+     * 设置堆参数
      * VM ARGS :    -Xms5m -Xmx5m -XX:+HeapDumpOnOutOfMemoryError
      * @param args
      */
