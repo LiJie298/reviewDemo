@@ -100,7 +100,7 @@ public class MyLinkedList {
             i = 0;
         } else {
             Node d = head;
-            while (d!= null) {
+            while (d != null) {
                 i++;
                 d = d.next;
             }
@@ -143,10 +143,80 @@ public class MyLinkedList {
         System.out.println();
     }
 
+    /**
+     * 查找单向列表倒数第k个位置的数
+     *
+     * @param k
+     * @return
+     */
+    public Node findNode(int k) {
+        if (k < 0) {
+            return null;
+        } else {
+            Node before = head;
+            Node after = head;
+            int i = 0;
+            for (; i < k && after != null; i++) {
+                after = after.next;
+            }
+            if (i < k && after == null) {
+                System.out.println(k + " -- not ");
+            }
+            while (after != null) {
+                before = before.next;
+                after = after.next;
+            }
+            return before;
+        }
+    }
+
+    /**
+     * 递归的思想 从尾到头 输出链表
+     *
+     * @param node
+     */
+    public void printListReversely(Node node) {
+        if (node != null) {
+            printListReversely(node.next);
+            System.out.print(node.value + " -> ");
+        }
+    }
+
+
+    /**
+     * 查找单向链表的中间节点
+     * 快的速度是慢的的速度的2倍
+     */
+    public void printMiddleNodeValue() {
+        Node slowNode = head;
+        Node fastNode = head;
+        while (slowNode.next != null && fastNode.next != null) {
+            slowNode = slowNode.next;
+            fastNode = fastNode.next.next;
+        }
+        System.out.println(slowNode.value);
+    }
+
+    public Node fanzhuan() {
+        if (null == head || null == head.next)
+            return head;
+        Node pre = head;
+        Node cur = head.next;
+        while (null != cur.next) {
+            Node tmp = cur.next;
+            cur.next = pre;
+            pre = cur;
+            cur = tmp;
+        }
+        cur.next = pre;
+        head.next = null;
+        return cur;
+    }
 
     public static void main(String[] args) {
         MyLinkedList linkedList = new MyLinkedList();
-        linkedList.addNode(new Node<>(15));
+        Node head = new Node<>(15);
+        linkedList.addNode(head);
         linkedList.addNode(new Node<>(12));
         linkedList.addNode(new Node<>(9));
         linkedList.addNode(new Node<>(45));
@@ -154,6 +224,10 @@ public class MyLinkedList {
         linkedList.addNode(new Node<>(235));
         linkedList.addNode(new Node<>(5));
         linkedList.addNode(new Node<>(65));
+        linkedList.addNode(new Node<>(101));
+        linkedList.addNode(new Node<>(25));
+        linkedList.addNode(new Node<>(51));
+        linkedList.addNode(new Node<>(625));
         linkedList.printLink();
 //        System.out.println("del node");
 //        linkedList.delNode();
@@ -165,11 +239,23 @@ public class MyLinkedList {
         linkedList.printLink();
 
 
-        System.out.println("order link");
-        linkedList.orderList();
+//        System.out.println("order link");
+//        linkedList.orderList();
+//        linkedList.printLink();
+
+        System.out.println("find node");
+//        for (int i = 0; i < linkedList.length(); i++) {
+//            Node node = linkedList.findNode(i);
+//            System.out.println(node == null ? "xxx" : node.value);
+//        }
+
+        linkedList.printListReversely(head);
+
+
+        linkedList.printMiddleNodeValue();
+
+        linkedList.fanzhuan();
         linkedList.printLink();
-
-
     }
 
 }
