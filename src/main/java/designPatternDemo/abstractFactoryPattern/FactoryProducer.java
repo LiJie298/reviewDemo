@@ -12,7 +12,7 @@ import org.apache.commons.lang3.StringUtils;
  */
 public class FactoryProducer {
     public static AbstractFactory getFactory(String factoryName){
-        if(StringUtils.isNoneEmpty(factoryName)){
+        if(StringUtils.isNotBlank(factoryName)){
             IMainboard mainboard = null;
             if(factoryName.toLowerCase().equals("cpu")){
               return new CpuFactory();
