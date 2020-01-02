@@ -87,7 +87,7 @@ public class Sort {
      * 时间复杂度 nlog2n 空间复杂度 nlog2n
      */
     private void fastSort(int[] array) {
-        sortJob2(array, 0, array.length - 1);
+        sortJob(array, 0, array.length - 1);
     }
 
     private void sortJob(int[] array, int low, int high) {
@@ -110,24 +110,6 @@ public class Sort {
         //递归
         sortJob(array, low, i - 1);
         sortJob(array, i + 1, high);
-    }
-
-    private void sortJob2(int[] array, int low, int high) {
-        int i = low, j = high, temp, key = array[low];
-        while (i < j) {
-            //交换key和右边应交换的值
-            while (i < j && array[j] > key) j--;
-            temp = array[j];
-            array[j] = array[i];
-            array[i] = temp;
-            //交换key和左边应交换的值
-            while (i < j && array[i] < key) i++;
-            temp = array[j];
-            array[j] = array[i];
-            array[i] = temp;
-        }
-        if (low < i) sortJob2(array, low, i - 1);
-        if (i < high) sortJob2(array, i + 1, high);
     }
 //----------------------------------------------------------------------------------
 
@@ -264,13 +246,7 @@ public class Sort {
 
     }
 
-    public static void main(String[] args) {
-        int[] a = new int[]{12, 34, 65, 6, 3, 89, 100, 45, 7, 4};
-        initHeap(a);
-        for (int i = 0; i < a.length; i++) {
-            System.out.print(a[i]+" - ");
-        }
-    }
+
 
 
     /**
