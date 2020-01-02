@@ -273,6 +273,10 @@ public class Sort {
     }
 
 
+    /**
+     * 堆排序
+     * @param array
+     */
     private static void initHeap(int[] array) {
         for (int i = array.length / 2 - 1; i >= 0; i--) {
             addHeapNode(array, i, array.length);
@@ -286,6 +290,12 @@ public class Sort {
         }
     }
 
+    /**
+     * 初始化堆
+     * @param array
+     * @param i
+     * @param length
+     */
     private static void addHeapNode(int array[], int i, int length) {
         int temp = array[i];
         for (int j = i * 2 + 1; j < length; j = j * 2 + 1) {

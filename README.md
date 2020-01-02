@@ -1,4 +1,4 @@
-# DesignPatternDemo
+# designpattern
 <p>java设计模式整理</p>
 <p>1、创建型</p>
     <p>工厂模式（Factory Pattern）
@@ -37,3 +37,9 @@
     <p>拦截过滤器模式（Intercepting Filter Pattern）
     <p>服务定位器模式（Service Locator Pattern）
     <p>传输对象模式（Transfer Object Pattern）
+
+# algorithm
+  排序算法 
+  查找算法
+  img= sort.jpg
+  
