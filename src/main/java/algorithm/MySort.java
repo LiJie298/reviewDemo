@@ -1,6 +1,6 @@
 package algorithm;
 
-import java.util.Arrays;
+import java.util.PriorityQueue;
 
 public class MySort {
     /**
@@ -11,12 +11,38 @@ public class MySort {
 //        maopaoSort(a);
 //        insertSort(a);
 //        fastSort(0, a.length - 1, a);
-        a = guiBingSort(0, a.length - 1, a);
+//        a = guiBingSort(0, a.length - 1, a);
+        a = heapSort(a);
         for (int i = 0; i < a.length; i++) {
             System.out.print(a[i] + "->");
         }
     }
 
+
+    public static int[] heapSort(int[] a) {
+        PriorityQueue<Integer> minHeap = new PriorityQueue<Integer>();
+        for (int i = 0; i < a.length; i++) {
+            minHeap.add(a[i]);
+        }
+        int[] b = new int[a.length];
+        for (int i = 0; i < a.length; i++) {
+            b[i] = minHeap.poll();
+        }
+        return b;
+    }
+
+    public static void heapTest(int k, int object, int[] queue) {
+        while (k > 0) {
+            int parent = (k - 1) >>> 1;
+            int e = queue[parent];
+            if (object >= e) {
+                break;
+            }
+            queue[k] = e;
+            k = parent;
+        }
+        queue[k] = object;
+    }
 
     /**
      * 归并排序

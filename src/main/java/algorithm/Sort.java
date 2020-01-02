@@ -206,19 +206,6 @@ public class Sort {
         }
     }
 
-    private static void ddFastSort(int[] nums) {
-        int tagIndex = 0;
-        for (int i = 0; i < nums.length; i++) {
-            if (nums[i] < nums[tagIndex]) {
-                int temp = nums[i];
-                nums[i] = nums[tagIndex];
-                nums[tagIndex] = temp;
-                tagIndex = i;
-            }
-        }
-        System.out.println(nums);
-    }
-
 
     private static int findMid(int[] array, int low, int hei) {
         int key = array[low];
@@ -235,17 +222,6 @@ public class Sort {
         array[hei] = key;
         return hei;
     }
-
-    private static void myFastSort(int[] ar, int low, int hei) {
-        if (low > hei) {
-            return;
-        }
-        int index = findMid(ar, low, hei);
-        myFastSort(ar, low, index);
-        myFastSort(ar, index, hei);
-
-    }
-
 
 
 
