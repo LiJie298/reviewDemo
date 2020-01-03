@@ -381,15 +381,177 @@
 
 ### Mysql
 
+- 索引结构
+
+	- 聚族索引
+
+- 事物
+
+	- 读未提交
+可以读取其他 session 未提交的脏数据
+	- 读已提交
+允许不可重复读取，但不允许脏读取。提交后，其他会话可以看到提交的数据
+	- 可重复读
+禁止不可重复读取和脏读取、以及幻读(innodb 独有)
+	- 串行
+ 事务只能一个接着一个地执行，但不能并发执行。
+
+- 锁
+
+	- 表锁
+	- 行级锁
+
+- 日志
+
+	- undo日志
+	- redo日志
+
+- MySQL 操作命令和内置函数
+- 性能优化和分布式
+
 ### Mongo
 
 ### Redis
+
+- 数据结构
+
+	- set
+
+		- 常用命令： sadd,spop,smembers,sunion 等
+		- set 对外提供的功能与list类似是一个列表的功能，特殊之处在于 set 是可以自动排重的。
+		- 交集：sinterstore key1 key2 key3     将交集存在key1内
+
+	- list
+
+		- 常用命令: lpush,rpush,lpop,rpop,lrange等
+		- Redis list 的实现为一个双向链表，即可以支持反向查找和遍历，更方便操作，不过带来了部分额外的内存开销。
+		- 分页：可以通过 lrange 命令，就是从某个元素开始读取多少个元素，可以基于 list 实现分页查询，这个很棒的一个功能，基于 redis 实现简单的高性能分页，可以做类似微博那种下拉不断分页的东西（一页一页的往下走），性能高。
+
+	- hash
+
+		- 常用命令： hget,hset,hgetall
+		- Hash 是一个 string 类型的 field 和 value 的映射表，hash 特别适合用于存储对象，后续操作的时候，你可以直接仅仅修改这个对象中的某个字段的值。 比如我们可以Hash数据结构来存储用户信息，商品信息等等
+
+			- key=JavaUser293847
+value={
+  “id”: 1,
+  “name”: “SnailClimb”,
+  “age”: 22,
+  “location”: “Wuhan, Hubei”
+}
+
+	- zset
+	- String
+
+		- 常用操作：set,get,decr,incr,mget 
+		- String数据结构是简单的key-value类型，value其实不仅可以是String，也可以是数字。 常规key-value缓存应用； 常规计数：微博数，粉丝数等
+
+	- Sorted Set
+
+		- 常用命令： zadd,zrange,zrem,zcard等
+		- 和set相比，sorted set增加了一个权重参数score，使得集合中的元素能够按score进行有序排列
+
+- 过期设置
+
+	- 定时删除
+
+		- 每隔100ms 随机抽查一批设置了过期的key，如果过期就删除
+
+	- 惰性删除
+
+		- 在使用的时候，判断key值是否过期
+
+	- 内存淘汰机制
+
+- 持久化
+
+	- 快照（snapshotting，RDB）
+	- 只追加文件（append-only file,AOF）
+
+- 内存淘汰机制
+
+	- volatile-lru：从已设置过期时间的数据集（server.db[i].expires）中挑选最近最少使用的数据淘汰
+	- allkeys-lru：当内存不足以容纳新写入数据时，在键空间中，移除最近最少使用的key（这个是最常用的）.
+	- volatile-ttl：从已设置过期时间的数据集（server.db[i].expires）中挑选将要过期的数据淘汰
+	- volatile-random：从已设置过期时间的数据集（server.db[i].expires）中任意选择数据淘汰
+	- allkeys-random：从数据集（server.db[i].dict）中任意选择数据淘汰
+	- no-eviction：禁止驱逐数据，也就是说当内存不足以容纳新写入数据时，新写入操作会报错。
+
+- 事务
+
+	- 实现方式
+
+		-  通过命令MULTI、EXEC、WATCH 实现
 
 ### ES
 
 ## 消息同步
 
 ### Kafka
+
+- 消息格式
+
+	- 头部（1B magic 字符 和 3B CRC32 ）
+	- 消息（key：value 的形式）
+
+- 专业术语
+
+	- ISR：副本同步队列
+	- AR：所有副本
+	- Broker：broker 是消息的代理，Producers往Brokers里面的指定Topic中写消息，Consumers从Brokers里面拉取指定Topic的消息，然后进行业务处理，broker在中间起到一个代理保存消息的中转站。
+
+- 主从消息复制
+
+	- 方式
+
+		- Follower异步的从Leader复制数据，数据只要被Leader写入log就被认为已经commit，这种情况下，如果leader挂掉，会丢失数据，kafka使用ISR的方式很好的均衡了确保数据不丢失以及吞吐率。Follower可以批量的从Leader复制数据，而且Leader充分利用磁盘顺序读以及send file(zero copy)机制，这样极大的提高复制性能，内部批量写磁盘
+
+- 事物
+
+	- 状态
+
+		- read-uncommit
+		- read-commit
+
+	- 方式
+
+		- 通过Pid（每个新的生产者实例在初始化的时候都会被分配一个PID）和transactionalId（消费者设置）
+
+- Kafka中的消息是否会丢失和重复消费
+
+	- request.required.acks
+
+		- 0:表示不进行消息接收是否成功的确认；
+		- 1:当Leader接收成功时确认
+		- -1:表示Leader和Follower都接收成功时确认
+
+	- Kafka消息消费有两个consumer接口，Low-level API和High-level API
+
+		- Low-level API：消费者自己维护offset等值，可以实现对Kafka的完全控制；
+
+High-level API：封装了对parition和offset的管理，使用简单；
+
+- kafka延迟队列
+
+	- 术语
+
+		- 时间轮（TimingWheel）
+		- 定时任务列表（TimerTaskList）
+		- 定时任务项（TimerTaskEntry）
+		- 定时任务TimerTask
+
+- Zookeeper
+
+	- 在kafka中还用来选举controller 和 检测broker是否存活
+
+- 作用
+
+	- 缓冲和削峰
+	- 异步通信
+	- 解耦和扩展性
+	- 冗余
+
+- 如何保证消息的顺序性
 
 ## 算法
 
@@ -410,4 +572,5 @@
 - hash
 - 顺序查找
 - 二叉树查找
+
   
