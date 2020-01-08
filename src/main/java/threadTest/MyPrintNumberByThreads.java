@@ -1,54 +1,57 @@
 package threadTest;
 
+import java.util.concurrent.Semaphore;
+
+/**
+ * 交替输出abcabcabc
+ */
 public class MyPrintNumberByThreads {
 
     private static volatile int num = 0;
     private static Object a1 = new Object();
     private static Object a2 = new Object();
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
 
-        Thread thread1 = new Thread(() -> {
-            try {
-                synchronized (a1) {
-                    synchronized (a2) {
-                        for (int i = 0; i < 5; i++) {
-                            System.out.println(Thread.currentThread().getId() + " -- " + ++num);
-                        }
-                    }
-                }
-                a1.wait();
-                a2.wait();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+        Semaphore a = new Semaphore(1);
+        Semaphore b = new Semaphore(0);
+        Semaphore c = new Semaphore(0);
+        Thread thread1 = new Thread( new Worker(a, b, "A", 3));
+        Thread thread2 = new Thread( new Worker(b, c, "B", 3));
+        Thread thread3 = new Thread( new Worker(c, a, "C", 3));
+        thread2.start();
+        thread1.start();
+        thread3.start();
 
-        });
+        Thread.sleep(2000);
 
-        Thread thread2 = new Thread(() -> {
-            synchronized (a1) {
-                for (int i = 0; i < 5; i++) {
-                    System.out.println(Thread.currentThread().getId() + " -- " + ++num);
-                }
-            }
-            a2.notify();
-        });
+    }
 
-        Thread thread3 = new Thread(() -> {
-            synchronized (a2) {
-                for (int i = 0; i < 5; i++) {
-                    System.out.println(Thread.currentThread().getId() + " -- " + ++num);
-                }
-            }
-            a1.notify();
-        });
+    public static class Worker implements Runnable {
+        private String key;
+        private Semaphore current;
+        private Semaphore next;
+        private Integer count;
 
-        while (num < 75) {
-            thread1.start();
-            thread2.start();
-            thread3.start();
+        public Worker(Semaphore current, Semaphore next, String key, Integer count) {
+            this.current = current;
+            this.next = next;
+            this.key = key;
+            this.count = count;
         }
 
-
+        public void run() {
+            for (int i = 0; i < count; i++) {
+                try {
+                    //获取当前的锁
+                    current.acquire(); //current - 1
+                    System.out.print( key);
+                    //释放next的锁
+                    next.release();    //next + 1
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
     }
 }

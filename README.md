@@ -28,15 +28,6 @@
     <p>策略模式（Strategy Pattern）
     <p>模板模式（Template Pattern）
     <p>访问者模式（Visitor Pattern）
-<p>4、j2EE 模式</p>
-    <p>MVC 模式（MVC Pattern）
-    <p>业务代表模式（Business Delegate Pattern）
-    <p>组合实体模式（Composite Entity Pattern）
-    <p>数据访问对象模式（Data Access Object Pattern）
-    <p>前端控制器模式（Front Controller Pattern）
-    <p>拦截过滤器模式（Intercepting Filter Pattern）
-    <p>服务定位器模式（Service Locator Pattern）
-    <p>传输对象模式（Transfer Object Pattern）
 
 
 # Java面试复习

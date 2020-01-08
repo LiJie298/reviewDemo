@@ -1,21 +1,89 @@
 package algorithm;
 
-import java.util.PriorityQueue;
+import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class MySort {
     /**
      * @param args
      */
     public static void main(String[] args) {
-        int[] a = new int[]{12, 5, 34, 299, 6, 3, 89, 100, 45, 7, 4};
+        int[] a = new int[]{-2, 1, -3, 4, -1, 2, 1, -5, 4};
 //        maopaoSort(a);
 //        insertSort(a);
 //        fastSort(0, a.length - 1, a);
 //        a = guiBingSort(0, a.length - 1, a);
-        a = heapSort(a);
+//        a = heapSort(a);
+//        System.out.println(maxSubArray(a));
+
+        ListNode listNode = new ListNode(1);
+        listNode.next = new ListNode(2);
+        listNode.next.next = new ListNode(4);
+        ListNode listNode1 = new ListNode(1);
+        listNode1.next = new ListNode(3);
+        listNode1.next.next = new ListNode(4);
+        ListNode res = mergeTwoLists(listNode, listNode1);
+//        System.out.println(res);
+        System.out.println(hasSomeStr("abc","xxabctscbb"));
+
         for (int i = 0; i < a.length; i++) {
             System.out.print(a[i] + "->");
         }
+    }
+
+    public int lengthOfLongestSubstring(String s) {
+        Set<Character> a = new HashSet<>();
+        int max = 0;
+        for (int i = 0; i < s.length(); i++) {
+            if (!a.contains(s.charAt(i))) {
+                a.add(s.charAt(i));
+            } else {
+                a = new HashSet();
+            }
+            max = Math.max(max, a.size());
+        }
+        return max;
+    }
+
+    public static int maxSubArray(int[] nums) {
+        int total = nums[0], temp = nums[0];
+        for (int i = 1; i < nums.length; i++) {
+            temp = Math.max(nums[i], temp + nums[i]);
+            total = Math.max(temp, total);
+        }
+        return total;
+    }
+
+    static class ListNode {
+        int val;
+        ListNode next;
+
+        ListNode(int x) {
+            val = x;
+        }
+    }
+
+    public static ListNode mergeTwoLists(ListNode l1, ListNode l2) {
+        if (l1 == null) {
+            return l2;
+        }
+        if (l2 == null) {
+            return l1;
+        }
+        ListNode prehead = new ListNode(0);
+        ListNode res = prehead;
+        while (l1 != null && l2 != null) {
+            if (l1.val <= l2.val) {
+                res.next = l1;
+                l1 = l1.next;
+            } else {
+                res.next = l2;
+                l2 = l2.next;
+            }
+            res = res.next;
+        }
+        res.next = l1 == null ? l2 : l1;
+        return prehead.next;
     }
 
 
@@ -95,6 +163,8 @@ public class MySort {
      * @param a
      */
     public static void fastSort(int low, int high, int[] a) {
+//        Class.forName();
+//        ClassLoader.getClassLoader();
         if (low > high) {
             return;
         }
@@ -158,6 +228,22 @@ public class MySort {
                 }
             }
         }
+    }
+
+    public static boolean hasSomeStr(String a, String b) {
+        if (b == null || a == null) {
+            return false;
+        }
+        if (b.length()<a.length()){
+            return false;
+        }
+        StringBuilder num = new StringBuilder();
+        for (int i = 0; i < b.length(); i++) {
+            if (a.indexOf(b.charAt(i)) != -1) {
+                num.append(b.charAt(i));
+            }
+        }
+        return num.toString().contains(a);
     }
 
 
