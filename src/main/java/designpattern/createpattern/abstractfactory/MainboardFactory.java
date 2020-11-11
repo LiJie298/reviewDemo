@@ -1,6 +1,7 @@
-package designpattern.factoryPattern;
+package designpattern.createpattern.abstractfactory;
 
 import designpattern.AmdMainboard;
+import designpattern.ICpu;
 import designpattern.IMainboard;
 import designpattern.IntelMainboard;
 
@@ -10,17 +11,18 @@ import designpattern.IntelMainboard;
  * @Description
  * @modified By
  */
-public class MainboardFactory {
+public class MainboardFactory extends AbstractFactory {
+    @Override
+    ICpu getCpu(int cpuType) {
+        return null;
+    }
 
-    public static final int ADM = 1;
-    public static final int INTEL = 2;
-
-
-    public static IMainboard createMainboard(int type){
+    @Override
+    IMainboard getMainBoard(int mainBoardType) {
         IMainboard mainboard = null;
-        if(type == ADM){
+        if(mainBoardType == 1){
             mainboard = new IntelMainboard(755);
-        }else if(type == INTEL){
+        }else if(mainBoardType == 2){
             mainboard = new AmdMainboard(938);
         }
         return mainboard;

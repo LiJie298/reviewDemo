@@ -1,4 +1,4 @@
-package designpattern.abstractFactoryPattern;
+package designpattern.createpattern.abstractfactory;
 
 import designpattern.AmdCpu;
 import designpattern.ICpu;
