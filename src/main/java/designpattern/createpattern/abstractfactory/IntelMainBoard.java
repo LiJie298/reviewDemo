@@ -1,4 +1,4 @@
-package designpattern;
+package designpattern.createpattern.abstractfactory;
 
 /**
  * @author lijie7
@@ -6,7 +6,7 @@ package designpattern;
  * @Description
  * @modified By
  */
-public class AmdMainboard implements IMainboard {
+public class IntelMainBoard implements IMainBoard {
 
     /**
      * CPU插槽的孔数
@@ -18,12 +18,12 @@ public class AmdMainboard implements IMainboard {
      *
      * @param cpuHoles
      */
-    public AmdMainboard(int cpuHoles) {
+    public IntelMainBoard(int cpuHoles) {
         this.cpuHoles = cpuHoles;
     }
 
     @Override
     public void installCPU() {
-
+        System.out.println("intel主板安装了cpu，CPU插槽的孔数为：" + cpuHoles);
     }
 }

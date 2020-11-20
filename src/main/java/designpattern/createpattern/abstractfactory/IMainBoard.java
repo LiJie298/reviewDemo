@@ -1,4 +1,4 @@
-package designpattern;
+package designpattern.createpattern.abstractfactory;
 
 /**
  * @author lijie7
@@ -6,6 +6,6 @@ package designpattern;
  * @Description
  * @modified By
  */
-public interface IMainboard {
+public interface IMainBoard {
     public void installCPU();
 }

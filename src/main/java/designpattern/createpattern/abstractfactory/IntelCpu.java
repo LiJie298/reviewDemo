@@ -1,5 +1,4 @@
-package designpattern;
-
+package designpattern.createpattern.abstractfactory;
 
 /**
  * @author lijie7
@@ -7,19 +6,18 @@ package designpattern;
  * @Description
  * @modified By
  */
-public class AmdCpu implements ICpu {
-
+public class IntelCpu implements ICpu {
     /**
      * CPU的针脚数
      */
     private int pins = 0;
 
-    public AmdCpu(int pins) {
+    public IntelCpu(int pins) {
         this.pins = pins;
     }
 
     @Override
     public void calculate() {
-        System.out.println("AMD CPU的针脚数：" + pins);
+        System.out.println("Intel CPU的针脚数：" + pins);
     }
 }

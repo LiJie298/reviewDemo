@@ -1,4 +1,4 @@
-package designpattern;
+package designpattern.createpattern.abstractfactory;
 
 /**
  * @author lijie7

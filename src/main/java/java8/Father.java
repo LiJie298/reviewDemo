@@ -1,16 +1,19 @@
 package java8;
 
-public class Father {
-    private String  name;
-    private int age;
+final class Father {
+    private final String _serviceKey;
+    private final String _subEnv;
 
-
-    public Father(String name, int age) {
-        this.name = name;
-        this.age = age;
+    Father(String serviceKey,String subEnv){
+        _serviceKey=serviceKey;
+        _subEnv=subEnv;
     }
 
-    public Father() {
+    public String get_serviceKey() {
+        return _serviceKey;
     }
 
+    public String get_subEnv() {
+        return _subEnv;
+    }
 }

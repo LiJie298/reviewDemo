@@ -1,7 +1,5 @@
 package designpattern.createpattern.factorymethod;
 
-import java.util.Calendar;
-
 /**
  * 运输方式
  *

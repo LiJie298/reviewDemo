@@ -15,22 +15,36 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class TimeDemo {
-    public static void main(String[] args) {
-        try {
-            String html = Jsoup.connect("https://www.toutiao.com/a6673398428485026052").get().html();
-            Pattern pattern = Pattern.compile("content :'[\\s\\S]+?'", Pattern.CASE_INSENSITIVE);
-            Matcher matcher = pattern.matcher(html);
-            if (matcher.find()) {
-                System.out.println(matcher.group());
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
 
-        LocalDate today = LocalDate.now();
-        System.out.println(getDateString(today, "yyyy-MM-dd"));
-        LocalDateTime now = LocalDateTime.now();
-        System.out.println(getDateString(now, "yyyy-MM-dd HH:mm:ss"));
+    static Pattern pattern = Pattern.compile("content :'[\\s\\S]+?'", Pattern.CASE_INSENSITIVE);
+
+
+
+//    public static void main(String[] args) {
+//        try {
+//            String html = Jsoup.connect("https://www.toutiao.com/a6673398428485026052").get().html();
+//            Matcher matcher = pattern.matcher(html);
+//            if (matcher.find()) {
+//                System.out.println(matcher.group());
+//            }
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//
+//        LocalDate today = LocalDate.now();
+//        System.out.println(getDateString(today, "yyyy-MM-dd"));
+//        LocalDateTime now = LocalDateTime.now();
+//        System.out.println(getDateString(now, "yyyy-MM-dd HH:mm:ss"));
+//    }
+
+
+    public static void main(String[] args){
+        Father father = new Father("1","2");
+        Father father1 = new Father("2","3");
+        Father father2 = new Father("3","4");
+        System.out.println(father.get_serviceKey());
+        System.out.println(father1.get_serviceKey());
+        System.out.println(father2.get_serviceKey());
     }
 
     /**
